@@ -4,3 +4,4 @@
 !.gitignore
 !get_results.py
 !*.sh
+!split_functions_workers.py
