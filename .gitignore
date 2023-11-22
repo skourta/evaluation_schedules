@@ -6,3 +6,4 @@
 !*.sh
 !split_functions_workers.py
 !README.md
+!*.py
