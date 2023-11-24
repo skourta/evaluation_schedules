@@ -12,7 +12,6 @@ fi
 python split_functions_workers.py --benchmarks=$1 --nbr-nodes=$2
 
 # launch the nodes in sbatch using the run_node.sh script
-for node in $(seq 0 $(($2-1)))
-do
-    sbatch run_node.sh $1/node_$node
+for node in $(seq 0 $(($2 - 1))); do
+    sbatch run_node.sh $1/node_$node 1
 done
