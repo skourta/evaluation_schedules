@@ -61,10 +61,10 @@ if __name__ == "__main__":
 
     print("explored: ", len(explored_programs))
     # save dict as json and csv file
-    with open(f"{args.schedules}_results.json", "w") as f:
+    with open(f"{args.schedules}/results/{args.schedules}_results.json", "w") as f:
         json.dump(explored_programs, f, indent=4)
 
-    with open(f"{args.schedules}_results.csv", "w") as f:
+    with open(f"{args.schedules}/results/{args.schedules}_results.csv", "w") as f:
         f.write(
             "program,schedule,original_min,schedules_min,speedup,speedup_predicted_model\n"
         )
