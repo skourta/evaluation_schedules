@@ -1,5 +1,6 @@
 #!/bin/bash
 #SBATCH -p compute
+#SBATCH --exclude=dn430
 #SBATCH --nodes=1
 #SBATCH --exclusive
 #SBATCH --tasks-per-node=1
@@ -31,7 +32,9 @@ echo "Benchmarks to execute: $1"
 # print the list of files to be executed
 echo "Files to execute: $(ls $1)"
 echo "Execute unoptimized: $EXECUTE_UNOPTIMIZED"
-
+echo "Printing the CPU info"
+echo
+lscpu
 echo
 echo
 echo "--------------------------------------------------"
@@ -52,8 +55,8 @@ WRAPPER=/scratch/sk10691/workspace/rl/evaluation_schedules/wrappers
 GENERATORS=/scratch/sk10691/workspace/rl/evaluation_schedules/generators
 suffix=".cpp"
 
-export MAX_RUNS=10
-export NB_EXEC=10
+export MAX_RUNS=30
+export NB_EXEC=30
 
 BENCHMARKS_PATH=$1
 
@@ -143,4 +146,7 @@ done
 
 rm -rf $WORKDIR_DIR
 
+# copy log of the scrip to the results directory
+cp ../outputs/job.${SLURM_JOBID}.out $RESULTS_DIR
+cp ../outputs/job.${SLURM_JOBID}.err $RESULTS_DIR
 # python get_results.py --schedules=$BENCHMARKS_PATH
